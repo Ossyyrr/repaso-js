@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="hola"></div>
+    <script>
+
+
+
+        class Pokemon {                             //Con esto creamos una clase que sea Pokemon, esto nos sirve para definir todo lo que tiene que contener nuestro pokemon, y ayudarnos así a organizarnos
+            constructor(id, name, image) {
+                this.id = id;
+                this.name = name;
+                this.image = image;
+            }
+        }
+
+
+
+        var miHtml = document.querySelector('.hola');
+
+        async function pedirDatos() {                   //Con esta petición pedimos los datos de los 151 primeros pokemons, los originales
+            var laPetición
+                = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+            var data = await laPetición.json();         //Guardamos los datos en un .json y estos datos los guardamos en una variable
+            // console.log(data)
+
+            const almacenDePokemon = [];                //Declaramos una variable, un array vacio, donde vamos a guardar todos los datos individuales de cada pokemon, los datos de su URL individual
+
+            for (pokemon of data.results) {
+                //   console.log(pokemon.name);
+                var laPeticiónIndividual
+                    = await fetch(pokemon.url);
+                var dataIndividual = await laPeticiónIndividual.json();
+                almacenDePokemon.push(dataIndividual);
+            }
+
+            for (pokemon of almacenDePokemon) {                 //Ahora que ya podemos acceder a todos los datos de cada pokemon, los vamos pintando con .innerHTML
+
+                //   console.log(pokemon.name);
+                //  console.log(pokemon.id);
+
+                miHtml.innerHTML += '<h1> hola  ' + pokemon.name + ' </h1>';
+                miHtml.innerHTML += '<img class="clase1" src="' + pokemon.sprites.front_shiny + '"  alt=" ' + pokemon.name + '">'
+            }
+
+            console.log(almacenDePokemon);
+
+
+
+            //let bulbasaur = new Pokemon(1, 'bulbasaur', 'https://m.media-amazon.com/images/I/51DFkMf+PKL._AC_SX425_.jpg');        //Este es el ejemplo de como se haría la creación de un nuevo pokemon, con clase pokemon
+            //console.log(bulbasaur.name);
+
+
+
+
+
+
+
+        }
+        pedirDatos();
+
+
+        async function pedirDatosPikachu() {
+            var laPeticionPikachu
+                = await fetch('https://pokeapi.co/api/v2/pokemon/pikachu');
+
+
+
+            var dataPikachu = await laPeticionPikachu.json();
+            console.log(dataPikachu);
+
+            miHtml.innerHTML += '<h1> hola  ' + dataPikachu.name + ' </h1>';
+            miHtml.innerHTML += '<img class="clase1" src="' + dataPikachu.sprites.front_default + '"  alt=" ' + dataPikachu.name + '">'
+            miHtml.innerHTML += '<img class="clase1" src="' + dataPikachu.sprites.front_shiny + '"  alt=" ' + dataPikachu.name + '">'
+
+            // Patri
+            /* var movimientos = [];
+ 
+ 
+             dataPikachu.moves.forEach((movimiento) => {
+                 movimientos.push(movimiento);
+             });
+
+
+            movimientos.sort(function (a, b) {
+                return a.version_group_details[0].level_learned_at - b.version_group_details[0].level_learned_at;
+            });
+
+
+             movimientos.forEach((movimiento) => {
+                 miHtml.innerHTML += '<li> Usa ' + movimiento.move.name + ' - lvl al que lo aprende: ' + movimiento.version_group_details[0].level_learned_at + ' </li>';
+             });
+            */
+
+
+            dataPikachu.moves.forEach((movimiento) => {
+                miHtml.innerHTML += '<li> Usa ' + movimiento.move.name + ' - lvl al que lo aprende: ' + movimiento.version_group_details[0].level_learned_at + ' </li>';
+            });
+
+        }
+    //    pedirDatosPikachu();
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

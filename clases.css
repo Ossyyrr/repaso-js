@@ -1,0 +1,14 @@
+.clase1 {
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+    margin:auto;
+}
+.hola{
+    width: 90vw;background-color: violet;
+    display: flex; 
+    flex-direction: column;
+}
+body {
+    background-color: yellowgreen;
+}

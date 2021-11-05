@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./clases.css">
+</head>
+
+<body>
+    <div class="hola"></div>
+    <script>
+
+
+
+        let api = {
+            count: 1118,
+            next: "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20",
+            previous: null,
+            results: [
+                {
+                    name: "bulbasaur",
+                    url: "https://media.vandal.net/i/1200x630/10-2021/2021105724573_1.jpg"
+                },
+                {
+                    name: "ivysaur",
+                    url: "https://media.vandal.net/i/1200x630/10-2021/2021105724573_1.jpg"
+                },
+                {
+                    name: "venusaur",
+                    url: "https://media.vandal.net/i/1200x630/10-2021/2021105724573_1.jpg"
+                },
+                {
+                    name: "charmander",
+                    url: "https://pokeapi.co/api/v2/pokemon/4/"
+                },
+                {
+                    name: "charmeleon",
+                    url: "https://pokeapi.co/api/v2/pokemon/5/"
+                },
+                {
+                    name: "charizard",
+                    url: "https://pokeapi.co/api/v2/pokemon/6/"
+                },
+                {
+                    name: "squirtle",
+                    url: "https://pokeapi.co/api/v2/pokemon/7/"
+                },
+                {
+                    name: "beedrill",
+                    url: "https://pokeapi.co/api/v2/pokemon/15/"
+                },
+                {
+                    name: "pidgey",
+                    url: "https://pokeapi.co/api/v2/pokemon/16/"
+                },
+                {
+                    name: "pidgeotto",
+                    url: "https://pokeapi.co/api/v2/pokemon/17/"
+                },
+                {
+                    name: "pidgeot",
+                    url: "https://pokeapi.co/api/v2/pokemon/18/"
+                },
+                {
+                    name: "rattata",
+                    url: "https://pokeapi.co/api/v2/pokemon/19/"
+                },
+                {
+                    name: "raticate",
+                    url: "https://pokeapi.co/api/v2/pokemon/20/"
+                }
+            ]
+        }
+
+        let numeroPokemon = 0;
+
+        var miHtml = document.querySelector('.hola');
+
+        for (pokemon of api.results) {
+
+            numeroPokemon += 1;
+
+            pokemon.num = "pokemon " + numeroPokemon;
+
+            console.log(pokemon);
+
+            miHtml.innerHTML += '<h1> hola  ' + pokemon.name + ' </h1>';
+            miHtml.innerHTML += '<img class="clase1" src="' + pokemon.url + '"  alt=" ' + pokemon.name + '">'
+        }
+
+
+
+
+
+
+
+    </script>
+
+    <img src="" alt="">
+
+</body>
+
+</html>
